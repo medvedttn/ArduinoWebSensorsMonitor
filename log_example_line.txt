@@ -1,0 +1,2 @@
+23:25 04.07.2017	Sensors:1/2/3/4/5/6/7/8	Warning:Temperature Alarm
+<pereiod=5min>
