@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ArduinoWebSensorsMonitor")]
-[assembly: AssemblyDescription("Monitors temp sensors from Arduino web-page")]
+[assembly: AssemblyTitle("WebSensorsMonitor")]
+[assembly: AssemblyDescription("Monitors temp sensors from web-page")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Medved")]
-[assembly: AssemblyProduct("ArduinoWebSensorsMonitor")]
+[assembly: AssemblyProduct("WebSensorsMonitor")]
 [assembly: AssemblyCopyright("Medvedttn ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

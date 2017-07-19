@@ -65,7 +65,7 @@ namespace ArduinoWebSensorsMonitor
             catch (Exception ex)
             {
                 tmrTimer.Stop();
-                MessageBox.Show("HTTP server read error!" + ex.Message, "ArduinoWebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("HTTP server read error!" + ex.Message, "WebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             finally
@@ -80,8 +80,9 @@ namespace ArduinoWebSensorsMonitor
             int curr_sensor_word_pos = 0, curr_sensor_index_pos=0;
             int sensor_index = 0;
             //temperature HTML line example
-            //<font size=4 color=#C0C7C1><b>Sensor<b></font> 0: 23.31C
-            int word_det_len = @"Sensor<b></font>".Length;
+            //<font size=4 color=#C0C7C1><b>Sensor<b></font> 0: 23.31C - OLD
+            //<b>Sensor<b>0: 23.50C
+            int word_det_len = @"Sensor<b>".Length;
             string curr_temp = "";
 
             //Sensor[0..8].Text : xx.xxC
@@ -96,12 +97,12 @@ namespace ArduinoWebSensorsMonitor
             {
                 if (sensor_index >= 7) break;    //max sensors 8 - indexes [0;7]
                 curr_sensor_word_pos = html_text.IndexOf("Sensor", curr_sensor_word_pos + word_det_len, StringComparison.InvariantCultureIgnoreCase);
-                curr_sensor_index_pos = curr_sensor_word_pos + word_det_len + 1;
+                curr_sensor_index_pos = curr_sensor_word_pos + word_det_len + 0;
                 if (curr_sensor_word_pos > 0)
                 {
-                    // 4 chars are " 0: "
-                    // 5 chars are "23.31"
-                    curr_temp = html_text.Substring(curr_sensor_word_pos + word_det_len + 4, 5);
+                    // 0 chars are "0: "
+                    // 5 chars are "23.50"
+                    curr_temp = html_text.Substring(curr_sensor_word_pos + word_det_len + 3, 5);
                     sensor_index = int.Parse(html_text.Substring(curr_sensor_index_pos, 1));
                     grpSensors.Controls["txtSensor" + sensor_index.ToString()].Text = curr_temp;
                 }
@@ -153,7 +154,7 @@ namespace ArduinoWebSensorsMonitor
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error in check sensors for alarms! " + ex.Message, "ArduinoWebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show("Error in check sensors for alarms! " + ex.Message, "WebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return;
             }
         }
@@ -170,9 +171,6 @@ namespace ArduinoWebSensorsMonitor
         {
             //debug ONLY
             //txtServerURL.Text = @"http://medvedttn.github.io/server_page.html";
-#if DEBUG
-            btnUpdate.Visible = true;
-#endif
 
             Version curr_exe_ver = Assembly.GetExecutingAssembly().GetName().Version;
             string app_v = " v" + curr_exe_ver.Major.ToString() + "." + curr_exe_ver.Minor.ToString();
@@ -201,7 +199,7 @@ namespace ArduinoWebSensorsMonitor
                 btnUpdate.Enabled = true;
                 btnStartMonitoring.Enabled = true;
                 btnSettings.Enabled = true;
-                MessageBox.Show("Введите настройки приложения!", "ArduinoWebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Введите настройки приложения!", "WebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 btnSettings.Focus();
                 return;
             }
@@ -226,7 +224,7 @@ namespace ArduinoWebSensorsMonitor
             if (Settings.Default.arrSensorAlarms == null)
             {
                 tmrTimer.Stop();
-                MessageBox.Show("Настройки не заданы(сервер, пороги срабатывания...)", "ArduinoWebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Настройки не заданы(сервер, пороги срабатывания...)", "WebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 btnSettings.Focus();
                 return;
             }

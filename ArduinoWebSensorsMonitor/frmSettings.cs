@@ -84,7 +84,7 @@ namespace ArduinoWebSensorsMonitor
             //check URL field
             if (txtServerURL.Text.Length < 1)
             {
-                MessageBox.Show("Введите адрес сервера!", "ArduinoWebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Введите адрес сервера!", "WebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtServerURL.Focus();
                 return false;
             }
@@ -96,7 +96,7 @@ namespace ArduinoWebSensorsMonitor
             }
             catch (Exception)
             {
-                MessageBox.Show("Введите валидный адрес сервера!", "ArduinoWebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Введите валидный адрес сервера!", "WebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtServerURL.Focus();
                 return false;
             }
@@ -119,7 +119,7 @@ namespace ArduinoWebSensorsMonitor
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Введите корректное значение порога срабатывания! " + ex.Message, "ArduinoWebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Введите корректное значение порога срабатывания! " + ex.Message, "WebSensorsMonitor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         curr_alarm.Focus();
                         return false;
                     }
