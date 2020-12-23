@@ -78,7 +78,6 @@ jobs:
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1
 
-
     # Execute all unit tests in the solution
     #- name: Execute unit tests
     #  run: dotnet test
@@ -110,8 +109,8 @@ jobs:
     #  run: Remove-Item -path $env:Wap_Project_Directory\$env:Signing_Certificate
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-artifact
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: MSIX Package
-        path: ${{ env.Test_Project_Path }}\AppPackages
+    #- name: Upload build artifacts
+    #  uses: actions/upload-artifact@v2
+    #   with:
+    #    name: MSIX Package
+    #    path: ${{ env.Test_Project_Path }}\AppPackages
